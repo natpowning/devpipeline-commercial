@@ -8,7 +8,7 @@ Terraform scripts and supporting components for deploying an Infrastructure-as-C
 
 #### What you need on the host you're deploying from
 
- - A copy of this repository (git clone https://github.com/natpowning/devpipeline.git)
+ - A copy of this repository (git clone https://github.com/natpowning/devpipeline-commercial.git)
  - AWS access and secret key
  - DockerEE license URL and corresponding docker_license.lic file located within the copy of this repository
  - Terraform binary available in your path
