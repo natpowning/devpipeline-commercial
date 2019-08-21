@@ -1,4 +1,3 @@
-
 variable "dockeree_license_url" {
   description = "URL associated with DockerEE license.  A 1-month trial can be obtained from https://hub.docker.com/editions/enterprise/docker-ee-trial"
 }
@@ -13,38 +12,37 @@ variable "docker_host_ami" {
 
 variable "bootstrapper_host_type" {
   description = "The EC2 type to use for a potentially transient host to bootstrap builds for services like Bitbucket, Bamboo and Jenkins."
-  default = "t3.large"
+  default     = "t3.large"
 }
 
-
 resource "aws_instance" "bootstrapper" {
-  ami           = "${var.docker_host_ami}"
-  instance_type = "${var.bootstrapper_host_type}"
-  subnet_id     = "${aws_subnet.core.id}"
-  key_name      = "${var.key_name}"
-  vpc_security_group_ids  = ["${aws_security_group.core.id}"]
+  ami                    = var.docker_host_ami
+  instance_type          = var.bootstrapper_host_type
+  subnet_id              = aws_subnet.core.id
+  key_name               = var.key_name
+  vpc_security_group_ids = [aws_security_group.core.id]
   tags = {
     Name    = "${var.project_name} BootStrapper"
     Role    = "BootStrapper"
-    Project = "${var.project_name}"
+    Project = var.project_name
   }
 
   connection {
     type        = "ssh"
-    host        = "${self.public_ip}"
+    host        = self.public_ip
     user        = "centos"
-    private_key = "${file("${var.private_key_file}")}"
+    private_key = file(var.private_key_file)
     agent       = false
   }
 
   provisioner "remote-exec" {
     inline = [
-      "mkdir /tmp/bamboo_server_build"
+      "mkdir /tmp/bamboo_server_build",
     ]
   }
 
   provisioner "file" {
-    source = "${var.dockeree_license_file}"
+    source      = var.dockeree_license_file
     destination = "/tmp/docker_subscription.lic"
   }
 
@@ -57,10 +55,6 @@ resource "aws_instance" "bootstrapper" {
       "sudo yum -y install docker-ee",
       "sudo systemctl enable docker",
       "sudo systemctl start docker",
-
-#
-# Install UCP to bootstrap the DockerEE cluster / swarm.  This host will be removed as a manager after the real UCP hosts are running.
-#
       "sudo docker container run --rm -it --name ucp -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/docker_subscription.lic:/config/docker_subscription.lic docker/ucp:3.0.7 install --host-address ${self.private_ip} --admin-username ${var.admin_username} --admin-password ${var.admin_password} --force-minimums",
     ]
   }
