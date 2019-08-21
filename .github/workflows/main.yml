@@ -22,5 +22,6 @@ jobs:
       run: |
           sudo terraform init
           env
+          export TF_VAR_aws_access_key TF_VAR_aws_secret_key TF_VAR_dockeree_license_url
           sudo terraform apply --auto-approve
 
