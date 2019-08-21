@@ -11,6 +11,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install dnsutils
       run: | 
-          sudo apt-get install dnsutils
-          nslookup natwork.com
+          sudo apt-get install docker
+          
 
