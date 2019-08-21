@@ -21,5 +21,6 @@ jobs:
         TF_VAR_dockeree_license_url: ${{ secrets.TF_VAR_dockeree_license_url }}
       run: |
           sudo terraform init
+          env
           sudo terraform apply --auto-approve
 
