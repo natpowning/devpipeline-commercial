@@ -18,6 +18,7 @@ jobs:
       run: |
           sudo terraform init
           export TF_VAR_aws_access_key=${secrets:TF_VAR_aws_access_key}
+          echo "AK: $TF_VAR_aws_access_key"
           export TF_VAR_aws_secret_key=${secrets:TF_VAR_aws_secret_key}
           export TF_VAR_dockeree_license_url=${secrets:TF_VAR_dockeree_license_url}
           sudo terraform apply --auto-approve
