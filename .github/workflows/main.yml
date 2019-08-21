@@ -10,7 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install terraform
-      secrets: "TF_VAR_aws_access_key", "TF_VAR_aws_secret_key", "TF_VAR_dockeree_license_url"
       run: | 
           sudo curl -L https://releases.hashicorp.com/terraform/0.12.6/terraform_0.12.6_linux_amd64.zip -o /tmp/terraform_linux_amd64.zip
           sudo unzip /tmp/terraform_linux_amd64.zip -d /usr/bin
@@ -18,5 +17,8 @@ jobs:
     - name: Apply in AWS
       run: |
           sudo terraform init
+          export TF_VAR_aws_access_key=${secrets:TF_VAR_aws_access_key}
+          export TF_VAR_aws_secret_key=${secrets:TF_VAR_aws_secret_key}
+          export TF_VAR_dockeree_license_url=${secrets:TF_VAR_dockeree_license_url}
           sudo terraform apply --auto-approve
 
