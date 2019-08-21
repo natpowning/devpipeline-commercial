@@ -25,8 +25,11 @@ jobs:
           export TF_VAR_aws_secret_key
           export TF_VAR_dockeree_license_url
           ssh-keygen -f id_rsa -t rsa -N ''
-          mkdir .ssh
+          mkdir ~/.ssh
+          chmod 700 ~/.ssh
           mv id_rsa ~/.ssh
+          chmod 600 ~/.ssh/id_rsa
           mv id_rsa.pub ~/.ssh
+          chmod 600 ~/.ssh/id_rsa.pub
           terraform apply --auto-approve
 
