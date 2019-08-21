@@ -12,5 +12,9 @@ jobs:
     - name: Install dnsutils
       run: | 
           sudo apt-get install docker
+          sudo systemctl enable docker
+          sudo systemctl start docker
+          sudo docker swarm init
+          sudo docker stack ls
           
 
