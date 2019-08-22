@@ -3,7 +3,7 @@ variable "docker_host_ucp_type" {
 }
 
 resource "aws_instance" "docker-ucp" {
-  count                  = 1
+  count                  = 5
   ami                    = var.docker_host_ami
   instance_type          = var.docker_host_ucp_type
   subnet_id              = aws_subnet.core.id
