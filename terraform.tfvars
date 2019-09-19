@@ -29,7 +29,7 @@ aws_region      = "us-west-2"
 docker_host_ami = "ami-01ed306a12b7d1c96"
 
 docker_host_ucp_type    = "t3.large"
-docker_host_dtr_type    = "t3.micro"
+docker_host_dtr_type    = "t3.large"
 docker_host_worker_type = "t3.micro"
 
 
