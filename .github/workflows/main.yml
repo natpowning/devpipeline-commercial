@@ -33,4 +33,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.pub
           terraform apply --auto-approve
           terraform apply --auto-approve
-          terraform destroy --auto-approve
+    - name: Destroy in AWS
+      env:
+        TF_VAR_aws_access_key: ${{ secrets.TF_VAR_aws_access_key }}
+        TF_VAR_aws_secret_key: ${{ secrets.TF_VAR_aws_secret_key }}
+        TF_VAR_dockeree_license_url: ${{ secrets.TF_VAR_dockeree_license_url }}
+      run: terraform destroy --auto-approve
