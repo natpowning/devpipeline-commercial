@@ -34,8 +34,6 @@ resource "aws_instance" "docker_dtr_first" {
       "curl -sk -H \"Authorization: Bearer $(cat /tmp/ucp_auth_token)\" https://${aws_instance.docker_ucp_first.private_ip}/swarm | jq -r .JoinTokens.Worker > /tmp/ucp_worker_join_token",
       "sudo docker swarm join --token $(cat /tmp/ucp_worker_join_token) ${aws_instance.docker_ucp_first.private_ip}:2377",
       "sleep 60",
-      "curl -sk https://${aws_instance.docker_ucp_first.private_ip}/ca -o /tmp/ucp_ca",
-      "sudo docker run --rm docker/dtr install --ucp-node ${aws_instance.docker_ucp_first.private_dns} --ucp-username ${var.admin_username} --ucp-password ${var.admin_password} --ucp-url https://${aws_instance.docker_ucp_first.private_ip} --ucp-ca \"$(cat /tmp/ucp_ca)\"",
     ]
   }
 
