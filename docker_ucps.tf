@@ -1,6 +1,6 @@
 
 resource "aws_instance" "docker_ucp" {
-  count                  = "3"
+  count                  = "2" # With these in addition to the first UCP this makes a total of three replicas which works, but five is best practice
   ami                    = var.docker_host_ami
   instance_type          = var.docker_host_ucp_type
   subnet_id              = aws_subnet.core.id

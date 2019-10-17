@@ -1,6 +1,6 @@
 # Development Pipeline Demo
 
-Terraform scripts and supporting components for deploying an Infrastructure-as-Code pipeline in AWS based on some commercial products including DockerEE, Bitbucket and Bamboo.  Jenkins is also included and configured to handle infrastructure deployment.  Service packages can be built in either Bamboo or Jenkins.
+Terraform scripts and supporting components for deploying a Docker Enterprise Edition cluster with UCP and DTR.
 
 ## Getting Started
 
