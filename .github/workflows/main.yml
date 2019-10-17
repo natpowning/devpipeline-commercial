@@ -32,9 +32,8 @@ jobs:
           mv id_rsa.pub ~/.ssh
           chmod 600 ~/.ssh/id_rsa.pub
           terraform apply --auto-approve
-          terraform apply --auto-approve
           terraform destroy --auto-approve
-    - name: Destroy in AWS
+    - name: Destroy in AWS on failure
       if: failure()
       env:
         TF_VAR_aws_access_key: ${{ secrets.TF_VAR_aws_access_key }}
