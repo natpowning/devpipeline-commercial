@@ -1,4 +1,8 @@
-# Development Pipeline Demo
+# Overview
+
+[![Actions Status](https://github.com/natpowning/devpipeline-commercial/workflows/CI/badge.svg)](https://github.com/natpowning/devpipeline-commercial/actions)
+
+Development Pipeline Demo
 
 Terraform scripts and supporting components for deploying a Docker Enterprise Edition cluster with UCP and DTR.
 
