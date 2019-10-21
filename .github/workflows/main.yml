@@ -24,6 +24,7 @@ jobs:
           export TF_VAR_aws_access_key
           export TF_VAR_aws_secret_key
           export TF_VAR_dockeree_license_url
+          echo '${{ secrets.dockeree_license_key }}' > docker_subscription.lic
           ssh-keygen -f id_rsa -t rsa -N ''
           mkdir ~/.ssh
           chmod 700 ~/.ssh
