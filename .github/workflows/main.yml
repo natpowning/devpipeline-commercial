@@ -21,6 +21,7 @@ jobs:
         TF_VAR_dockeree_license_url: ${{ secrets.TF_VAR_dockeree_license_url }}
       run: |
           terraform init
+          terraform validate
           export TF_VAR_aws_access_key
           export TF_VAR_aws_secret_key
           export TF_VAR_dockeree_license_url
