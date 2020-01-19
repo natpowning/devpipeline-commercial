@@ -16,10 +16,10 @@ jobs:
           sudo rm -f /tmp/terraform_linux_amd64.zip
     - name: Apply in AWS
       env:
-        TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY}}
-        TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY}}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY}}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+        TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         TF_VAR_dockeree_license_url: ${{ secrets.TF_VAR_dockeree_license_url }}
      run: |
           terraform init
